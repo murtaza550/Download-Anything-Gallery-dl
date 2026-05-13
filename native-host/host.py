@@ -103,7 +103,7 @@ def copy_cookies() -> str | None:
             tmp.close()
             shutil.copy2(src, tmp_path)
             return tmp_path
-        except Exception as exc:  # noqa: BLE001
+        except Exception as exc:
             log_error(f"Cookie copy failed: {exc}")
             return None
 
@@ -144,7 +144,7 @@ def download_worker(slot: int) -> None:
         if cookie_tmp:
             try:
                 os.unlink(cookie_tmp)
-            except Exception:  # noqa: BLE001
+            except Exception:
                 pass
 
         with state_lock:
@@ -239,14 +239,14 @@ def main() -> None:
     while True:
         try:
             msg = read_message()
-        except Exception as exc:  # noqa: BLE001
+        except Exception as exc:
             log_error(f"Message read failed: {exc}")
             break
         if msg is None:
             break
         try:
             dispatch(msg)
-        except Exception as exc:  # noqa: BLE001
+        except Exception as exc:
             log_error(f"Dispatch failed: {exc}")
 
 
