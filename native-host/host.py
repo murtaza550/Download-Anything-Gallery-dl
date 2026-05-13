@@ -94,7 +94,7 @@ def read_file_lines(key):
 
 
 def log_error(msg):
-    timestamp = datetime.datetime.utcnow().isoformat()
+    timestamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
     entry = f"{timestamp} {msg}"
     with error_lock:
         with open(FILES["error_log"], "a", encoding="utf-8") as handle:
